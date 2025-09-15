@@ -1,0 +1,102 @@
+        * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background-color: #050505;
+        font-family: "Mukta Mahee";
+        color: #fff;
+      }
+      ul {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+    
+      .container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .d-flex {
+        display: flex;
+      }
+      .direction-col {
+        flex-direction: column;
+      }
+      .f-wrap {
+        flex-wrap: wrap;
+      }
+      .align-center {
+        align-items: center;
+      }
+      .align-start {
+        align-items: start;
+      }
+      .justy-center {
+        justify-content: center;
+      }
+      .justy-between{
+        justify-content: space-between;
+      }
+      .g-10{
+        gap: 10px;
+      }
+      .g-20{
+        gap: 20px;
+      }
+        .g-30{
+        gap : 30px;
+      }
+      h4 {
+        font-size: 25px;
+      }
+      
+       .or-color {
+        color: #eb8307 ;
+       }
+      .poster img {
+        width: 300px;
+        height: auto;
+        border-radius: 8px;
+      }
+      .movieCard{
+        background-color:#292828 ;
+        padding: 20px;
+        border-radius: 8px;
+       
+      } 
+      .cardHeader{
+        margin-left: 40px;
+      }
+     
+    .information li {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+    .about{
+        line-height: 1.7;
+    }
+    .rating{
+        font-size:20px ;
+        font-weight: 600;
+    }
+    
+    .heart{
+        padding-right: 15px;
+    font-size: 22px;
+    }
+    .border-bottom {
+        border-bottom : 1px solid rgba(255,255,255,.2) ; 
+    }
+
+
+    .imdb{
+        text-transform: uppercase;
+        background-color: #eb8307;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 8px;
+    }
