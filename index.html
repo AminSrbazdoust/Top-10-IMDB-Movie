@@ -10,12 +10,17 @@
   </head>
   <body>
     <div class="container"> 
+      <div class="header d-flex justy-center g-10 padd-10 ">
+      <button class="highScore filter-button" >highScore</button>
+      <button class="lowScore filter-button" >lowScore</button>
+      <button class="reset filter-button" >reset </button>
+      </div>
       <div class="mainList d-flex g-30 direction-col"></div>
         </div>
       </div>
     </div>
     <script>
-      var data = {
+      var movie = {
         data: [
           {
             id: 1,
@@ -253,42 +258,68 @@
           total_count: 250,
         },
       };
+       var btnHighScore = document.querySelector(".highScore");
+       var btnLowScore= document.querySelector(".lowScore");
+       var btnReset = document.querySelector(".reset");
+       var originalData = movie.data.slice(); 
 
-      var mainlist = ""; 
-      data.data.map(function (item, index) {
-        mainlist +=
-          "<div class= 'movieCard d-flex align-start '>  <div class='poster' > <a href ='#'> <img src=" +
-          item.poster +
-          "/> </a> </div>" +
-          
-          " <div class=' moviecontent'>  <div class='cardHeader d-flex justy-between align-center '> <h4 class = 'title  '> <a href = '#'>  Movie :" +
-          item.title +
-          " </a> </h4>" +
-          " <div class= 'ratingbox  d-flex  direction-col align-center ' > <span class = 'border-bottom d-flex  align-center'>  <span class = 'heart'> <i class='fa-regular fa-heart'></i> </span> <p class = 'rating  or-color  '> " + item.imdb_rating + " </p class=' f-style '> <p> /10</p>  </span> <h3 class ='imdb'> imdb </span> </div>  </div>"+
-         
-          " <ul class= 'information ' >  <li class = 'time  d-flex align-center g-10 '> <span class= 'or-color' ><i class='fa-solid fa-clock'></i> </span> time : " +
-          item.runtime +
-          " </li>" +
-          " <li class = 'genres  d-flex align-center g-10  '> <span class= 'or-color' ><i class='fa-solid fa-folder-open'></i> </span> genres :  " +
-          item.genres.toString() +
-          " </li>" +
-          "<li class =  'director  d-flex align-center g-10' > <span class= 'or-color' ><i class='fa-solid fa-circle-user'></i> </span> director : " +
-          item.director +
-          "</li>" +
-          " <li class = 'stars   d-flex align-center g-10 '> <span class= 'or-color' ><i class='fa-solid fa-users'></i> </span> stars : " +
-             item.actors.toString() + 
-             "</li>" +
-          " <li class = 'country d-flex align-center g-10'>  <span class= 'or-color' ><i class='fa-solid fa-globe'> </i>  </span> country : " +
-          item.country +
-          "</li>" +
-          " <li class= 'about  d-flex align-center g-10 ' >" +
-          item.plot +
-          " </li>  </ul> </div> </div> ";
-      });
+  function render() {
+    var mainlist = movie.data
+      .map(function (item) {
+        return (
+          "<div class='movieCard d-flex align-start'>" +
+            "<div class='poster'><a href='#'><img src='" + item.poster + "'/></a></div>" +
+            "<div class='moviecontent'>" +
+              "<div class='cardHeader d-flex justy-between align-center'>" +
+                "<h4 class='title'><a href='#'>Movie: " + item.title + "</a></h4>" +
+                "<div class='ratingbox d-flex direction-col align-center'>" +
+                  "<span class='border-bottom d-flex align-center'>" +
+                    "<span class='heart'><i class='fa-regular fa-heart'></i></span>" +
+                    "<p class='rating or-color'>" + item.imdb_rating + "</p><p>/10</p>" +
+                  "</span>" +
+                  "<h3 class='imdb'>imdb</h3>" +
+                "</div>" +
+              "</div>" +
+              "<ul class='information'>" +
+                "<li class='time d-flex align-center g-10'><i class='fa-solid fa-clock or-color'></i> time: " + item.runtime + "</li>" +
+                "<li class='genres d-flex align-center g-10'><i class='fa-solid fa-folder-open or-color'></i> genres: " + item.genres.toString() + "</li>" +
+                "<li class='director d-flex align-center g-10'><i class='fa-solid fa-circle-user or-color'></i> director: " + item.director + "</li>" +
+                "<li class='stars d-flex align-center g-10'><i class='fa-solid fa-users or-color'></i> stars: " + item.actors.toString() + "</li>" +
+                "<li class='country d-flex align-center g-10'><i class='fa-solid fa-globe or-color'></i> country: " + item.country + "</li>" +
+                "<li class='about d-flex align-center g-10'>" + item.plot + "</li>" +
+              "</ul>" +
+            "</div>" +
+          "</div>"
+        );
+      })
+      .join(""); 
 
-      document.querySelector(".mainList").innerHTML = mainlist;
+    document.querySelector(".mainList").innerHTML = mainlist;
+  }
 
-    
+  function highScore() {
+   movie.data.sort(function (a, b) {
+      return b.imdb_rating - a.imdb_rating;
+    });
+    render();
+  }
+
+  function lowScore() {
+    movie.data.sort(function (a, b) {
+      return a.imdb_rating - b.imdb_rating;
+    });
+    render();
+  }
+
+  function reset() {
+    movie.data = originalData.slice();
+    render();
+  }
+
+  btnHighScore.addEventListener("click", highScore);
+  btnLowScore.addEventListener("click", lowScore);
+  btnReset.addEventListener("click", reset);
+  render();
     </script>
   </body>
 </html>
